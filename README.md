@@ -1,1 +1,12 @@
 # docs
+
+
+uboot
+
+linux
+
+opensbi
+
+
+
+
