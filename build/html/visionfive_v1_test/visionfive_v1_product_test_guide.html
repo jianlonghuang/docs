@@ -41,6 +41,8 @@
 <li class="toctree-l1"><a class="reference internal" href="#build-tf-card-booting-image">Build TF Card Booting Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#copy-test-script">Copy test_script</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#running-on-board">Running on Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#run-product-test-on-board">Run Product_test on Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#enter-mac-and-sn">Enter MAC and SN</a></li>
 </ul>
 
         </div>
@@ -82,7 +84,7 @@
 <p>opensbi branch:</p>
 <p>​	master</p>
 </div></blockquote>
-<p><em>fetch code instruction: more detail refer to <a class="reference external" href="https://github.com/starfive-tech/freelight-u-sdk/tree/JH7100_starlight_multimedia">README</a></em></p>
+<p><em>fetch code instruction: more details refer to <a class="reference external" href="https://github.com/starfive-tech/freelight-u-sdk/tree/JH7100_starlight_multimedia">README</a></em></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/starfive-tech/freelight-u-sdk.git
 $ git checkout --track origin/JH7100_starlight_multimedia
 $ git submodule update --init --recursive
@@ -96,7 +98,7 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 <section id="build-tf-card-booting-image">
 <h1>Build TF Card Booting Image<a class="headerlink" href="#build-tf-card-booting-image" title="Permalink to this headline"></a></h1>
 <p>please modify the following file</p>
-<p>freelight-u-sdk//Makefile</p>
+<p>freelight-u-sdk/Makefile</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">change</span>
 <span class="n">uboot_config</span> <span class="o">:=</span> <span class="n">starfive_jh7100_starlight_smode_defconfig</span>
 <span class="n">to</span>
@@ -117,6 +119,13 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 
 <span class="n">add</span>
 <span class="n">CONFIG_FRAMEBUFFER_CONSOLE</span><span class="o">=</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>conf/u74_nvdla-uboot-fit-image.its</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">change</span>
+<span class="n">data</span> <span class="o">=</span> <span class="o">/</span><span class="n">incbin</span><span class="o">/</span><span class="p">(</span><span class="s2">&quot;../work/HiFive_U-Boot/arch/riscv/dts/jh7100-beaglev-starlight-a1.dtb&quot;</span><span class="p">);</span>
+<span class="n">to</span>
+<span class="n">data</span> <span class="o">=</span> <span class="o">/</span><span class="n">incbin</span><span class="o">/</span><span class="p">(</span><span class="s2">&quot;../work/linux/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight-a1.dtb&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>HiFive_U-Boot/configs/starfive_jh7100_visionfive_smode_defconfig</p>
@@ -158,28 +167,170 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 </pre></div>
 </div>
 <p><strong>Step2</strong>:</p>
-<p>modify <strong>cfg.ini</strong> as required</p>
+<p>modify <strong>cfg.ini</strong> as required,  more detail refer to <a class="reference external" href="https://github.com/jianlonghuang/test_script">test_script readme</a></p>
 <p><strong>Step3</strong>:</p>
 <p>copy to tf card  /dev/sdX3</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">test_script</span><span class="o">/</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">jianlong</span><span class="o">/</span><span class="mi">465</span><span class="n">a8d4f</span><span class="o">-</span><span class="mi">31</span><span class="n">fe</span><span class="o">-</span><span class="mi">40</span><span class="n">c3</span><span class="o">-</span><span class="mf">951e-4</span><span class="n">a565bd3a620</span><span class="o">/</span> <span class="o">&amp;&amp;</span> <span class="n">sync</span>
 </pre></div>
 </div>
 <p>Note: /media/jianlong/465a8d4f-31fe-40c3-951e-4a565bd3a620/ is mounted path of /dev/sdX3</p>
-<p><strong>Step4</strong>:</p>
-<p>run test_script</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">test_script</span> <span class="o">&amp;&amp;</span> <span class="n">chmod</span> <span class="mi">777</span> <span class="o">*</span> <span class="o">&amp;&amp;</span> <span class="n">sh</span> <span class="n">product_test</span><span class="o">.</span><span class="n">sh</span>
-</pre></div>
-</div>
 </section>
 <section id="running-on-board">
 <h1>Running on Board<a class="headerlink" href="#running-on-board" title="Permalink to this headline"></a></h1>
-<p><em>more detail refer to <a class="reference external" href="https://github.com/starfive-tech/freelight-u-sdk/tree/JH7100_starlight_multimedia">README</a></em></p>
-<p>Step1: set enviroment parameter:</p>
+<p><em>more details refer to <a class="reference external" href="https://github.com/starfive-tech/freelight-u-sdk/tree/JH7100_starlight_multimedia">README</a></em></p>
+<p>After the Visionfive is properly connected to the serial port cable, network cable and power cord turn on the power from the wall power socket to power on the Visionfive and you will see the startup information as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bootloader</span> <span class="n">version</span><span class="p">:</span> <span class="mi">210209</span><span class="o">-</span><span class="mi">4547</span><span class="n">a8d</span>
+<span class="n">ddr</span> <span class="mh">0x00000000</span><span class="p">,</span> <span class="mi">1</span><span class="n">M</span> <span class="n">test</span>
+<span class="n">ddr</span> <span class="mh">0x00100000</span><span class="p">,</span> <span class="mi">2</span><span class="n">M</span> <span class="n">test</span>
+<span class="n">DDR</span> <span class="n">clk</span> <span class="mi">2133</span><span class="n">M</span><span class="p">,</span><span class="n">Version</span><span class="p">:</span> <span class="mi">210302</span><span class="o">-</span><span class="mi">5</span><span class="n">aea32f</span>
+<span class="mi">2</span>
+</pre></div>
+</div>
+<p>Press any key as soon as it starts up to enter the <strong>upgrade menu</strong>. In this menu, you can update uboot</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bootloader</span> <span class="n">version</span><span class="p">:</span> <span class="mi">210209</span><span class="o">-</span><span class="mi">4547</span><span class="n">a8d</span>
+<span class="n">ddr</span> <span class="mh">0x00000000</span><span class="p">,</span> <span class="mi">1</span><span class="n">M</span> <span class="n">test</span>
+<span class="n">ddr</span> <span class="mh">0x00100000</span><span class="p">,</span> <span class="mi">2</span><span class="n">M</span> <span class="n">test</span>
+<span class="n">DDR</span> <span class="n">clk</span> <span class="mi">2133</span><span class="n">M</span><span class="p">,</span><span class="n">Version</span><span class="p">:</span> <span class="mi">210302</span><span class="o">-</span><span class="mi">5</span><span class="n">aea32f</span>
+<span class="mi">0</span>
+<span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+<span class="n">xxxxxxxxxxxFLASH</span> <span class="n">PROGRAMMINGxxxxxxxxxxxxxxx</span>
+<span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+
+<span class="mi">0</span><span class="p">:</span><span class="n">update</span> <span class="n">boot</span>
+<span class="mi">1</span><span class="p">:</span><span class="n">quit</span>
+<span class="n">select</span> <span class="n">the</span> <span class="n">function</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Type <strong>“0”</strong> to update the uboot file fw_payload.bin.out via Xmodem mode, and then Type <strong>“1”</strong> to exit Flash Programming.</p>
+<p>After that, you will see the information <code class="docutils literal notranslate"><span class="pre">VisionFive</span> <span class="pre">#</span></code> when press the “f” button</p>
+<p><strong>Step1</strong>: set enviroment parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setenv</span> <span class="n">fdt_high</span> <span class="mh">0xffffffffffffffff</span><span class="p">;</span><span class="n">setenv</span> <span class="n">initrd_high</span> <span class="mh">0xffffffffffffffff</span><span class="p">;</span><span class="n">setenv</span> <span class="n">scriptaddr</span> <span class="mh">0x88100000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">script_offset_f</span> <span class="mh">0x1fff000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">script_size_f</span> <span class="mh">0x1000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">kernel_addr_r</span> <span class="mh">0x84000000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">kernel_comp_addr_r</span> <span class="mh">0x90000000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">kernel_comp_size</span> <span class="mh">0x10000000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">fdt_addr_r</span> <span class="mh">0x88000000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">ramdisk_addr_r</span> <span class="mh">0x88300000</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Step2: load and excute:</p>
+<p><strong>Step2</strong>: load and excute:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="n">mmcsetup</span><span class="p">;</span> <span class="n">run</span> <span class="n">fdtsetup</span><span class="p">;</span> <span class="n">run</span> <span class="n">fatenv</span><span class="p">;</span> <span class="n">echo</span> <span class="s1">&#39;running boot2...&#39;</span><span class="p">;</span> <span class="n">run</span> <span class="n">boot2</span>
+</pre></div>
+</div>
+<p><strong>Step3</strong>:</p>
+<p>When you see the <code class="docutils literal notranslate"><span class="pre">buildroot</span> <span class="pre">login:</span></code> message, then congratulations, the launch was successful</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">buildroot</span> <span class="n">login</span><span class="p">:</span><span class="n">root</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">starfive</span>
+</pre></div>
+</div>
+</section>
+<section id="run-product-test-on-board">
+<h1>Run Product_test on Board<a class="headerlink" href="#run-product-test-on-board" title="Permalink to this headline"></a></h1>
+<p><strong>Step1</strong>:</p>
+<ol class="simple">
+<li><p>Before excute test_script, you must pulg HDMI displayer/USB disk/ethernet cable.</p></li>
+<li><p>Make sure ETH0 connect to PC/VM through a network cable, the PC/VM IP and eth0 IP are on the same network segment, PC/VM open the iperf3 service, such as <strong>iperf3 -s</strong></p></li>
+<li><p>Make sure the different network card of PC/VM connect to router, PC/VM open the iperf3 service, such as <strong>iperf3 -s</strong></p></li>
+</ol>
+<p><strong>Step2</strong>:</p>
+<p>run test_script after start kernel</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">test_script</span> <span class="o">&amp;&amp;</span> <span class="n">chmod</span> <span class="mi">777</span> <span class="o">*</span> <span class="o">&amp;&amp;</span> <span class="n">sh</span> <span class="n">product_test</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p><strong>Step3</strong>:</p>
+<p>when testing HDMI AND PWMADC, you must input the result <strong>y/n</strong>, base on tester to watch displayer and to listen, output as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>******************HDMI PWMADC testing...
+Playing WAVE &#39;audio8k16S.wav&#39; : Signed 16 bit Little Endian, Rate 8000 Hz, Stereo
+Warning: rate is not accurate (requested = 8000Hz, got = 16000Hz)
+         please, try the plug plugin 
+please enter HDMI TEST OK(y/n?): y
+please enter PWMADC TEST OK(y/n?): y
+HDMI   PASS
+PWMADC PASS
+</pre></div>
+</div>
+<p>when testing BLUETOOTH, you must active the bluetooth device, so it can be scaned on, such as</p>
+<p><em>[NEW] Device B4:EE:25:EB:B8:E0 RAPOO BT3.0 Mouse</em></p>
+<p>BLUETOOTH test output as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Agent</span> <span class="n">registered</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Controller</span> <span class="mi">70</span><span class="p">:</span><span class="mi">4</span><span class="n">A</span><span class="p">:</span><span class="mi">0</span><span class="n">E</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="n">A3</span> <span class="n">Pairable</span><span class="p">:</span> <span class="n">yes</span>
+<span class="p">[</span><span class="n">bluetooth</span><span class="p">]</span><span class="c1"># scan on</span>
+<span class="n">Discovery</span> <span class="n">started</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Controller</span> <span class="mi">70</span><span class="p">:</span><span class="mi">4</span><span class="n">A</span><span class="p">:</span><span class="mi">0</span><span class="n">E</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="n">A3</span> <span class="n">Discovering</span><span class="p">:</span> <span class="n">yes</span>
+<span class="p">[</span><span class="n">NEW</span><span class="p">]</span> <span class="n">Device</span> <span class="mi">55</span><span class="p">:</span><span class="mi">90</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">76</span><span class="p">:</span><span class="mi">5</span><span class="n">A</span><span class="p">:</span><span class="mi">1</span><span class="n">D</span> <span class="mi">55</span><span class="o">-</span><span class="mi">90</span><span class="o">-</span><span class="n">EE</span><span class="o">-</span><span class="mi">76</span><span class="o">-</span><span class="mi">5</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="n">D</span>
+<span class="p">[</span><span class="n">NEW</span><span class="p">]</span> <span class="n">Device</span> <span class="mi">74</span><span class="p">:</span><span class="mi">85</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">99</span> <span class="mi">74</span><span class="o">-</span><span class="mi">85</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="mi">99</span>
+<span class="p">[</span><span class="n">NEW</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EC</span><span class="p">:</span><span class="n">D8</span><span class="p">:</span><span class="n">E0</span> <span class="n">RAPOO</span> <span class="n">BT4</span><span class="mf">.0</span> <span class="n">Mouse</span>
+<span class="p">[</span><span class="n">NEW</span><span class="p">]</span> <span class="n">Device</span> <span class="mi">70</span><span class="p">:</span><span class="mi">1</span><span class="n">C</span><span class="p">:</span><span class="n">E7</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">3</span><span class="n">D</span><span class="p">:</span><span class="n">A2</span> <span class="n">DESKTOP</span><span class="o">-</span><span class="n">SF1I2R2</span>
+<span class="p">[</span><span class="n">NEW</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">RAPOO</span> <span class="n">BT3</span><span class="mf">.0</span> <span class="n">Mouse</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">UUIDs</span><span class="p">:</span> <span class="mi">00001200</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">1000</span><span class="o">-</span><span class="mi">8000</span><span class="o">-</span><span class="mi">00805</span><span class="n">f9b34fb</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">UUIDs</span><span class="p">:</span> <span class="mi">00000100</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">1000</span><span class="o">-</span><span class="mi">8000</span><span class="o">-</span><span class="mi">00805</span><span class="n">f9b34fb</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">UUIDs</span><span class="p">:</span> <span class="mi">00000001</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">1000</span><span class="o">-</span><span class="mi">8000</span><span class="o">-</span><span class="mi">00805</span><span class="n">f9b34fb</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">UUIDs</span><span class="p">:</span> <span class="mi">00000011</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">1000</span><span class="o">-</span><span class="mi">8000</span><span class="o">-</span><span class="mi">00805</span><span class="n">f9b34fb</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">UUIDs</span><span class="p">:</span> <span class="mi">00001124</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">1000</span><span class="o">-</span><span class="mi">8000</span><span class="o">-</span><span class="mi">00805</span><span class="n">f9b34fb</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EC</span><span class="p">:</span><span class="n">D8</span><span class="p">:</span><span class="n">E0</span> <span class="n">RSSI</span><span class="p">:</span> <span class="o">-</span><span class="mi">50</span>
+<span class="n">scan_over</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Attempting</span> <span class="n">to</span> <span class="n">pair</span> <span class="k">with</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">Connected</span><span class="p">:</span> <span class="n">yes</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">Modalias</span><span class="p">:</span> <span class="n">usb</span><span class="p">:</span><span class="n">vAE24p8618d0001</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">UUIDs</span><span class="p">:</span> <span class="mi">00001124</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">1000</span><span class="o">-</span><span class="mi">8000</span><span class="o">-</span><span class="mi">00805</span><span class="n">f9b34fb</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">UUIDs</span><span class="p">:</span> <span class="mi">00001200</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">1000</span><span class="o">-</span><span class="mi">8000</span><span class="o">-</span><span class="mi">00805</span><span class="n">f9b34fb</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">ServicesResolved</span><span class="p">:</span> <span class="n">yes</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">Paired</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Pairing</span> <span class="n">successful</span>
+<span class="p">[</span><span class="n">CHG</span><span class="p">]</span> <span class="n">Device</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">Trusted</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Changing</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span> <span class="n">trust</span> <span class="n">succeeded</span>
+<span class="p">[</span>  <span class="mf">430.724685</span><span class="p">]</span> <span class="n">hid</span><span class="o">-</span><span class="n">generic</span> <span class="mi">0005</span><span class="p">:</span><span class="n">AE24</span><span class="p">:</span><span class="mf">8618.0001</span><span class="p">:</span> <span class="n">unknown</span> <span class="n">main</span> <span class="n">item</span> <span class="n">tag</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">430.741609</span><span class="p">]</span> <span class="nb">input</span><span class="p">:</span> <span class="n">RAPOO</span> <span class="n">BT3</span><span class="mf">.0</span> <span class="n">Mouse</span> <span class="k">as</span> <span class="o">/</span><span class="n">devices</span><span class="o">/</span><span class="n">platform</span><span class="o">/</span><span class="n">soc</span><span class="o">/</span><span class="mf">11870000.</span><span class="n">serial</span><span class="o">/</span><span class="n">tty</span><span class="o">/</span><span class="n">ttyS1</span><span class="o">/</span><span class="n">hci0</span><span class="o">/</span><span class="n">hci0</span><span class="p">:</span><span class="mi">12</span><span class="o">/</span><span class="mi">0005</span><span class="p">:</span><span class="n">AE24</span><span class="p">:</span><span class="mf">8618.0001</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="n">input0</span>
+<span class="p">[</span>  <span class="mf">430.762868</span><span class="p">]</span> <span class="n">hid</span><span class="o">-</span><span class="n">generic</span> <span class="mi">0005</span><span class="p">:</span><span class="n">AE24</span><span class="p">:</span><span class="mf">8618.0001</span><span class="p">:</span> <span class="nb">input</span><span class="p">:</span> <span class="n">BLUETOOTH</span> <span class="n">HID</span> <span class="n">v0</span><span class="mf">.01</span> <span class="n">Mouse</span> <span class="p">[</span><span class="n">RAPOO</span> <span class="n">BT3</span><span class="mf">.0</span> <span class="n">Mouse</span><span class="p">]</span> <span class="n">on</span> <span class="mi">70</span><span class="p">:</span><span class="mi">4</span><span class="n">a</span><span class="p">:</span><span class="mi">0</span><span class="n">e</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="n">a3</span>
+<span class="n">Attempting</span> <span class="n">to</span> <span class="n">connect</span> <span class="n">to</span> <span class="n">B4</span><span class="p">:</span><span class="n">EE</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="n">EB</span><span class="p">:</span><span class="n">B8</span><span class="p">:</span><span class="n">E0</span>
+<span class="n">Connection</span> <span class="n">successful</span>
+<span class="n">result</span><span class="p">:</span> 
+<span class="n">result</span><span class="p">:</span> <span class="n">Connection</span> <span class="n">successful</span>
+<span class="n">suc_flag</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">BLUETOOTH</span> <span class="n">PASS</span>
+</pre></div>
+</div>
+<p><strong>Step4</strong>:</p>
+<p>the result of test_script as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">************************************************</span>
+<span class="o">*********************</span><span class="n">Result</span><span class="o">*********************</span>
+<span class="o">************************************************</span>
+<span class="n">USB1</span><span class="p">:</span>             <span class="n">FAIL</span>  <span class="n">speed</span><span class="p">:</span> <span class="mf">8.47</span> <span class="n">Mbit</span><span class="o">/</span><span class="n">s</span>
+<span class="n">USB2</span><span class="p">:</span>             <span class="n">FAIL</span>  <span class="n">speed</span><span class="p">:</span> <span class="mf">9.73</span> <span class="n">Mbit</span><span class="o">/</span><span class="n">s</span>
+<span class="n">USB3</span><span class="p">:</span>             <span class="n">FAIL</span>  <span class="n">speed</span><span class="p">:</span> <span class="mf">10.94</span> <span class="n">Mbit</span><span class="o">/</span><span class="n">s</span>
+<span class="n">SD</span><span class="p">:</span>             <span class="n">PASS</span>  <span class="n">speed</span><span class="p">:</span> <span class="mf">9.98</span> <span class="n">Mbit</span><span class="o">/</span><span class="n">s</span>
+<span class="n">ETH0</span> <span class="n">PING</span><span class="p">:</span>      <span class="n">PASS</span>
+<span class="n">ETH0</span> <span class="n">TX</span><span class="p">:</span>        <span class="n">PASS</span>  <span class="n">tx</span> <span class="n">speed</span><span class="p">:</span>   <span class="mi">416</span> <span class="n">Mbits</span><span class="o">/</span><span class="n">sec</span>  
+<span class="n">ETH0</span> <span class="n">RX</span><span class="p">:</span>        <span class="n">PASS</span>  <span class="n">rx</span> <span class="n">speed</span><span class="p">:</span>   <span class="mi">416</span> <span class="n">Mbits</span><span class="o">/</span><span class="n">sec</span>  
+<span class="n">HDMI</span><span class="p">:</span>           <span class="n">PASS</span>
+<span class="n">PWMADC</span><span class="p">:</span>         <span class="n">PASS</span>
+<span class="n">BLUETOOTH</span><span class="p">:</span>      <span class="n">PASS</span>
+<span class="n">WLAN0</span> <span class="n">PING</span><span class="p">:</span>     <span class="n">PASS</span>
+<span class="n">WLAN0</span> <span class="n">TX</span><span class="p">:</span>         <span class="n">FAIL</span>  <span class="n">tx</span> <span class="n">speed</span><span class="p">:</span>  <span class="mf">1.92</span> <span class="n">Mbits</span><span class="o">/</span><span class="n">sec</span>  
+<span class="n">WLAN0</span> <span class="n">RX</span><span class="p">:</span>         <span class="n">FAIL</span>  <span class="n">rx</span> <span class="n">speed</span><span class="p">:</span>  <span class="mf">1.82</span> <span class="n">Mbits</span><span class="o">/</span><span class="n">sec</span>  
+</pre></div>
+</div>
+</section>
+<section id="enter-mac-and-sn">
+<h1>Enter MAC and SN<a class="headerlink" href="#enter-mac-and-sn" title="Permalink to this headline"></a></h1>
+<p><strong>Step1</strong>: excute the command to enter Mac and SN</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">test_script</span> <span class="o">&amp;&amp;</span> <span class="n">sh</span> <span class="n">enter_mac_sn</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p><strong>Step2</strong>: enter SN, must capital letter(A~Z) or numbers or “-”</p>
+<p>such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VF7100A1</span><span class="o">-</span><span class="mi">21</span><span class="n">W50</span><span class="o">-</span><span class="n">D8E0</span><span class="o">-</span><span class="mi">0000001</span>
+</pre></div>
+</div>
+<p><strong>Step3</strong>: enter MAC, must capital letter(A~F) or numbers or “-”</p>
+<p>such as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">11</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="mi">33</span><span class="o">-</span><span class="mi">44</span><span class="o">-</span><span class="mi">55</span><span class="o">-</span><span class="mi">66</span>
+</pre></div>
+</div>
+<p>the output as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sh enter_mac_sn.sh </span>
+<span class="o">************************************************</span>
+<span class="o">****************</span><span class="n">enter</span> <span class="n">mac</span> <span class="ow">and</span> <span class="n">sn</span><span class="o">****************</span>
+<span class="o">************************************************</span>
+<span class="n">please</span> <span class="n">enter</span> <span class="n">sn</span><span class="p">(</span><span class="n">XXXXXXXX</span><span class="o">-</span><span class="n">XXXXX</span><span class="o">-</span><span class="n">XXXX</span><span class="o">-</span><span class="n">XXXXXXX</span><span class="p">):</span> <span class="n">VF7100A1</span><span class="o">-</span><span class="mi">21</span><span class="n">W50</span><span class="o">-</span><span class="n">D8E0</span><span class="o">-</span><span class="mi">0000001</span><span class="n">ABC</span><span class="o">-</span><span class="mi">43354</span>
+<span class="n">sn_len</span><span class="p">:</span><span class="mi">36</span>
+<span class="n">please</span> <span class="n">enter</span> <span class="n">ETH0</span> <span class="n">mac</span> <span class="n">addr</span><span class="p">(</span><span class="n">XX</span><span class="o">-</span><span class="n">XX</span><span class="o">-</span><span class="n">XX</span><span class="o">-</span><span class="n">XX</span><span class="o">-</span><span class="n">XX</span><span class="o">-</span><span class="n">XX</span><span class="p">):</span> <span class="mi">11</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="mi">33</span><span class="o">-</span><span class="mi">44</span><span class="o">-</span><span class="mi">55</span><span class="o">-</span><span class="mi">66</span>
+<span class="n">SN</span><span class="p">:</span><span class="n">VF7100A1</span><span class="o">-</span><span class="mi">21</span><span class="n">W50</span><span class="o">-</span><span class="n">D8E0</span><span class="o">-</span><span class="mi">0000001</span><span class="n">ABC</span><span class="o">-</span><span class="mi">43354</span><span class="p">;</span>
+<span class="n">ETH0</span><span class="p">:</span><span class="mi">11</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="mi">33</span><span class="o">-</span><span class="mi">44</span><span class="o">-</span><span class="mi">55</span><span class="o">-</span><span class="mi">66</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
