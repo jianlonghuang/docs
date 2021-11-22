@@ -24,18 +24,22 @@ author = 'jianlong'
 # The full version, including alpha/beta/rc tags
 release = 'V1.00'
 
+from recommonmark.parser import CommonMarkParser
+source_parsers = {
+    '.md': CommonMarkParser,
+}
+source_suffix = ['.rst', '.md']
 
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-]
+extensions = ['recommonmark']
 
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = [sphinx_rtd_theme.get_html_theme_path()]
+templates_path = ['sphinx_rtd_theme.get_html_theme_path()']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
