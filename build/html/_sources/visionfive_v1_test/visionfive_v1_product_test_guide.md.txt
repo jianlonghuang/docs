@@ -12,9 +12,8 @@ sudo ./make_format-nvdla-rootfs.sh /dev/sdx
 
 Note: 
 
-1. the gz name maybe include tag, such as **script_burn_tf-100.tar.gz**
-2. Please insert the TF card and run command `df -h` to check the device name `/dev/sdXX`
-3. run environment of ubunut `sudo apt-get install gdisk parted gparted`
+1. Please insert the TF card and run command `df -h` to check the device name `/dev/sdXX`
+2. run environment of ubunut `sudo apt-get install gdisk parted gparted`
 
 
 
@@ -170,6 +169,8 @@ Note: /media/jianlong/465a8d4f-31fe-40c3-951e-4a565bd3a620/ is mounted path of /
 
 *more details refer to [README](https://github.com/starfive-tech/freelight-u-sdk/tree/JH7100_starlight_multimedia)*
 
+downloag the lastest releases uboot file [fw_payload.bin.out](https://github.com/jianlonghuang/script_burn_tf)
+
 After the Visionfive is properly connected to the serial port cable, network cable and power cord turn on the power from the wall power socket to power on the Visionfive and you will see the startup information as follows:
 
 ```
@@ -197,7 +198,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 select the function:
 ```
 
-Type **"0"** to update the uboot file fw_payload.bin.out via Xmodem mode, and then Type **"1"** to exit Flash Programming.
+Type **"0"** to update the uboot file [fw_payload.bin.out](https://github.com/jianlonghuang/script_burn_tf) via Xmodem mode, and then Type **"1"** to exit Flash Programming.
 
 After that, you will see the information `VisionFive #` when press the "f" button
 

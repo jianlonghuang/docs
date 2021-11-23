@@ -81,7 +81,6 @@
 </div>
 <p>Note:</p>
 <ol class="simple">
-<li><p>the gz name maybe include tag, such as <strong>script_burn_tf-100.tar.gz</strong></p></li>
 <li><p>Please insert the TF card and run command <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-h</span></code> to check the device name <code class="docutils literal notranslate"><span class="pre">/dev/sdXX</span></code></p></li>
 <li><p>run environment of ubunut <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">gdisk</span> <span class="pre">parted</span> <span class="pre">gparted</span></code></p></li>
 </ol>
@@ -195,6 +194,7 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 <section id="running-on-board">
 <h1>Running on Board<a class="headerlink" href="#running-on-board" title="Permalink to this headline"></a></h1>
 <p><em>more details refer to <a class="reference external" href="https://github.com/starfive-tech/freelight-u-sdk/tree/JH7100_starlight_multimedia">README</a></em></p>
+<p>downloag the lastest releases uboot file <a class="reference external" href="https://github.com/jianlonghuang/script_burn_tf">fw_payload.bin.out</a></p>
 <p>After the Visionfive is properly connected to the serial port cable, network cable and power cord turn on the power from the wall power socket to power on the Visionfive and you will see the startup information as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bootloader</span> <span class="n">version</span><span class="p">:</span> <span class="mi">210209</span><span class="o">-</span><span class="mi">4547</span><span class="n">a8d</span>
 <span class="n">ddr</span> <span class="mh">0x00000000</span><span class="p">,</span> <span class="mi">1</span><span class="n">M</span> <span class="n">test</span>
@@ -218,7 +218,7 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 <span class="n">select</span> <span class="n">the</span> <span class="n">function</span><span class="p">:</span>
 </pre></div>
 </div>
-<p>Type <strong>“0”</strong> to update the uboot file fw_payload.bin.out via Xmodem mode, and then Type <strong>“1”</strong> to exit Flash Programming.</p>
+<p>Type <strong>“0”</strong> to update the uboot file <a class="reference external" href="https://github.com/jianlonghuang/script_burn_tf">fw_payload.bin.out</a> via Xmodem mode, and then Type <strong>“1”</strong> to exit Flash Programming.</p>
 <p>After that, you will see the information <code class="docutils literal notranslate"><span class="pre">VisionFive</span> <span class="pre">#</span></code> when press the “f” button</p>
 <p><strong>Step1</strong>: set enviroment parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setenv</span> <span class="n">fdt_high</span> <span class="mh">0xffffffffffffffff</span><span class="p">;</span><span class="n">setenv</span> <span class="n">initrd_high</span> <span class="mh">0xffffffffffffffff</span><span class="p">;</span><span class="n">setenv</span> <span class="n">scriptaddr</span> <span class="mh">0x88100000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">script_offset_f</span> <span class="mh">0x1fff000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">script_size_f</span> <span class="mh">0x1000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">kernel_addr_r</span> <span class="mh">0x84000000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">kernel_comp_addr_r</span> <span class="mh">0x90000000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">kernel_comp_size</span> <span class="mh">0x10000000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">fdt_addr_r</span> <span class="mh">0x88000000</span><span class="p">;</span><span class="n">setenv</span> <span class="n">ramdisk_addr_r</span> <span class="mh">0x88300000</span><span class="p">;</span>
