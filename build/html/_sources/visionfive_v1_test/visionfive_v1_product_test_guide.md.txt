@@ -1,6 +1,26 @@
+# Burn TF Card
+
+If you don't want to fetch code and compile, you can do this step,  skip **Fetch code** and **Build TF Card Booting Image** chapter
+
+downloag the lastest releases image [script_burn_tf_visionfive.tar.gz](https://github.com/jianlonghuang/script_burn_tf)
+
+```
+tar -xvf script_burn_tf_visionfive.tar.gz
+cd script_burn_tf
+sudo ./make_format-nvdla-rootfs.sh /dev/sdx
+```
+
+Note: 
+
+1. the gz name maybe include tag, such as **script_burn_tf-100.tar.gz**
+2. Please insert the TF card and run command `df -h` to check the device name `/dev/sdXX`
+3. run environment of ubunut `sudo apt-get install gdisk parted gparted`
+
+
+
 # Fetch code
 
-https://github.com/starfive-tech/freelight-u-sdk.git
+[https://github.com/starfive-tech/freelight-u-sdk.git](https://github.com/starfive-tech/freelight-u-sdk.git)
 
 > branch:
 >

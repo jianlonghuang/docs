@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fetch code &mdash; jianlong_docs V1.00 documentation</title>
+  <title>Burn TF Card &mdash; jianlong_docs V1.00 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -37,7 +37,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Fetch code</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Burn TF Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#fetch-code">Fetch code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#build-tf-card-booting-image">Build TF Card Booting Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#copy-test-script">Copy test_script</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#running-on-board">Running on Board</a></li>
@@ -59,7 +60,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Fetch code</li>
+      <li>Burn TF Card</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/visionfive_v1_test/visionfive_v1_product_test_guide.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -69,9 +70,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="fetch-code">
+  <section id="burn-tf-card">
+<h1>Burn TF Card<a class="headerlink" href="#burn-tf-card" title="Permalink to this headline"></a></h1>
+<p>If you don’t want to fetch code and compile, you can do this step,  skip <strong>Fetch code</strong> and <strong>Build TF Card Booting Image</strong> chapter</p>
+<p>downloag the lastest releases image <a class="reference external" href="https://github.com/jianlonghuang/script_burn_tf">script_burn_tf_visionfive.tar.gz</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">script_burn_tf_visionfive</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">script_burn_tf</span>
+<span class="n">sudo</span> <span class="o">./</span><span class="n">make_format</span><span class="o">-</span><span class="n">nvdla</span><span class="o">-</span><span class="n">rootfs</span><span class="o">.</span><span class="n">sh</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdx</span>
+</pre></div>
+</div>
+<p>Note:</p>
+<ol class="simple">
+<li><p>the gz name maybe include tag, such as <strong>script_burn_tf-100.tar.gz</strong></p></li>
+<li><p>Please insert the TF card and run command <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-h</span></code> to check the device name <code class="docutils literal notranslate"><span class="pre">/dev/sdXX</span></code></p></li>
+<li><p>run environment of ubunut <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">gdisk</span> <span class="pre">parted</span> <span class="pre">gparted</span></code></p></li>
+</ol>
+</section>
+<section id="fetch-code">
 <h1>Fetch code<a class="headerlink" href="#fetch-code" title="Permalink to this headline"></a></h1>
-<p>https://github.com/starfive-tech/freelight-u-sdk.git</p>
+<p><a class="reference external" href="https://github.com/starfive-tech/freelight-u-sdk.git">https://github.com/starfive-tech/freelight-u-sdk.git</a></p>
 <blockquote>
 <div><p>branch:</p>
 <p>​	JH7100_starlight_multimedia</p>
