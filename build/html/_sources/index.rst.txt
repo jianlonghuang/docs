@@ -10,6 +10,7 @@ Welcome to jianlong_docs's documentation!
    :maxdepth: 2
    
    visionfive_v1_test/visionfive_v1_product_test_guide
+   visionfive_v1_test/tftp_update_uboot
 
 Indices and tables
 ==================

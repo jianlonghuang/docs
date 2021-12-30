@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Tftpd32 server &mdash; jianlong_docs V1.00 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Burn TF Card" href="visionfive_v1_product_test_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> jianlong_docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html">Burn TF Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#fetch-code">Fetch code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#build-tf-card-booting-image">Build TF Card Booting Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#copy-test-script">Copy test_script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#running-on-board">Running on Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#run-product-test-on-board">Run Product_test on Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#enter-mac-and-sn">Enter MAC and SN</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Start Tftpd32 server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#update-fw-payload-visionfive-e2-1230-bin-out">Update fw_payload_visionfive_e2_1230.bin.out</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">jianlong_docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Start Tftpd32 server</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/visionfive_v1_test/tftp_update_uboot.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>ALL the steps take 1 minute</p>
+<section id="start-tftpd32-server">
+<h1>Start Tftpd32 server<a class="headerlink" href="#start-tftpd32-server" title="Permalink to this headline"></a></h1>
+<p>PC IP: 192.168.120.33</p>
+<ol class="simple">
+<li><p>Open <strong>Tftpd32.exe</strong></p></li>
+<li><p>Choose the file <strong>fw_payload_visionfive_e2_1230.bin.out</strong> path</p></li>
+</ol>
+</section>
+<section id="update-fw-payload-visionfive-e2-1230-bin-out">
+<h1>Update fw_payload_visionfive_e2_1230.bin.out<a class="headerlink" href="#update-fw-payload-visionfive-e2-1230-bin-out" title="Permalink to this headline"></a></h1>
+<ol>
+<li><p>Turn on the power, Press ‘v’ if you see the infomation as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Autoboot</span> <span class="pre">in</span> <span class="pre">2</span> <span class="pre">seconds</span></code></p>
+</li>
+<li><p>erase environment parameter:</p>
+<p><code class="docutils literal notranslate"><span class="pre">eraseenv</span></code></p>
+</li>
+<li><p>Set enviroment parameter:</p>
+<p><code class="docutils literal notranslate"><span class="pre">setenv</span> <span class="pre">ipaddr</span> <span class="pre">192.168.120.200;setenv</span> <span class="pre">serverip</span> <span class="pre">192.168.120.33</span></code></p>
+</li>
+<li><p>Flash detect</p>
+<p><code class="docutils literal notranslate"><span class="pre">sf</span> <span class="pre">probe</span></code></p>
+</li>
+<li><p>Tftpboot fw_payload_visionfive_e2_1230.bin.out to ddr</p>
+<p><code class="docutils literal notranslate"><span class="pre">tftpboot</span> <span class="pre">0x90000000</span> <span class="pre">192.168.120.33:fw_payload_visionfive_e2_1230.bin.out</span></code></p>
+<p>the infomation for example as follows:</p>
+<blockquote>
+<div><p>VisionFive #tftpboot 0x90000000 192.168.120.33:fw_payload_visionfive_e2_1230.bin.out
+Speed: 1000, full duplex
+Using dwmac.10020000 device
+TFTP from server 192.168.120.33; our IP address is 192.168.120.200
+Filename ‘fw_payload_visionfive_e2_1230.bin.out’.
+Load address: 0x90000000
+Loading: ##################################################  2.9 MiB
+4.1 MiB/s
+done
+Bytes transferred = 3025228 (2e294c hex)</p>
+</div></blockquote>
+</li>
+<li><p>Update flash</p>
+<p><code class="docutils literal notranslate"><span class="pre">sf</span> <span class="pre">update</span> <span class="pre">0x90000000</span> <span class="pre">0x40000</span> <span class="pre">0x2E2C00</span></code></p>
+<blockquote>
+<div><p>0x2E2C00: the file fw_pay_load_visionfive_e2_1230.bin.out size;</p>
+<p>​					you can get from step 4 (2e294c hex), 1k align</p>
+</div></blockquote>
+</li>
+<li><p>reboot the board</p></li>
+<li><p>check opensbi and uboot version</p>
+<blockquote>
+<div><p>bootloader version:211102-0b86f96
+ddr 0x00000000, 1M test
+ddr 0x00100000, 2M test
+DDR clk 2133M,Version: 211102-d086aee
+0 crc flash: 5595e732, crc ddr: 5595e732
+crc check PASSED</p>
+<p>bootloader.</p>
+<p><strong>OpenSBI v1.0</strong></p>
+<hr class="docutils" />
+<p>/ __ \                  / <em><em><strong>|  _ _   <em>|
+| |  | |</em> __   ___ _ __ | (</strong></em> | |</em>) || |
+| |  | | ‘_ \ / _ \ ‘_ \ ___ |  _ &lt; | |
+| |__| | |<em>) |  __/ | | |</em><em><em><em>) | |</em>) || |</em>
+_</em><strong>/| .</strong>/ _<strong>|<em>| |</em>|</strong><em><strong>/|____/</strong></em>__|
+| |
+|_|</p>
+<p>Platform Name             : StarFive VisionFive V1
+Platform Features         : medeleg
+Platform HART Count       : 2
+Platform IPI Device       : aclint-mswi
+Platform Timer Device     : aclint-mtimer &#64; 6250000Hz
+Platform Console Device   : uart8250
+Platform HSM Device       : —
+Platform Reboot Device    : —
+Platform Shutdown Device  : —
+Firmware Base             : 0x80000000
+Firmware Size             : 296 KB
+Runtime SBI Version       : 0.3</p>
+<p>Domain0 Name              : root
+Domain0 Boot HART         : 1
+Domain0 HARTs             : 0*,1*
+Domain0 Region00          : 0x0000000002000000-0x000000000200ffff (I)
+Domain0 Region01          : 0x0000000080000000-0x000000008007ffff ()
+Domain0 Region02          : 0x0000000000000000-0xffffffffffffffff (R,W,X)
+Domain0 Next Address      : 0x0000000080200000
+Domain0 Next Arg1         : 0x0000000082200000
+Domain0 Next Mode         : S-mode
+Domain0 SysReset          : yes</p>
+<p>Boot HART ID              : 1
+Boot HART Domain          : root
+Boot HART ISA             : rv64imafdcsux
+Boot HART Features        : scounteren,mcounteren
+Boot HART PMP Count       : 16
+Boot HART PMP Granularity : 4096
+Boot HART PMP Address Bits: 36
+Boot HART MHPM Count      : 2
+Boot HART MIDELEG         : 0x0000000000000222
+Boot HART MEDELEG         : 0x000000000000b109</p>
+<p><strong>U-Boot 2022.01-rc4-VisionFive-g0c08d335c5 (Dec 30 2021 - 08:30:15 +0800)StarFive</strong></p>
+<p>CPU:   rv64imafdc
+Model: StarFive VisionFive V1
+DRAM:  8 GiB
+MMC:   mmc&#64;10000000: 0, mmc&#64;10010000: 1
+Loading Environment from SPIFlash… cadence_spi spi&#64;11860000: Can’t get reset: -524
+SF: Detected gd25lq128 with page size 256 Bytes, erase size 4 KiB, total 16 MiB
+OK
+StarFive EEPROM format v1</p>
+<p>——–EEPROM INFO——–
+Vendor : StarFive Technology Co., Ltd.
+Product full SN: VF7100A1-2160-D008E000-01001001;
+data version: 0x1
+PCB revision: 0x1
+BOM revision:
+Ethernet MAC address: 82:be:6e:02:48:15
+——–EEPROM INFO——–</p>
+<p>In:    serial&#64;12440000
+Out:   serial&#64;12440000
+Err:   serial&#64;12440000
+Net:   dwmac.10020000
+MMC CD is 0x1, force to True.
+MMC CD is 0x1, force to True.
+switch to partitions #0, OK
+mmc0 is current device
+MMC CD is 0x1, force to True.
+MMC CD is 0x1, force to True.
+Failed to load ‘uEnv.txt’
+Failed to load ‘/boot/uEnv.txt’
+Autoboot in 2 seconds</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="visionfive_v1_product_test_guide.html" class="btn btn-neutral float-left" title="Burn TF Card" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, jianlong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
