@@ -4,9 +4,9 @@ ALL the steps take 1 minute
 
 PC IP: 192.168.120.33
 
-1. Open **Tftpd32.exe**
+1. Open **[Tftpd32.exe](https://github.com/jianlonghuang/docs/blob/master/source/visionfive_v1_test/tools/tftpd32.exe)**
 
-2. Choose the file **fw_payload_visionfive_e2_1230.bin.out** path 
+2. Choose the file **[fw_payload_visionfive_e2_1230.bin.out](https://github.com/jianlonghuang/docs/blob/master/source/visionfive_v1_test/tools/fw_payload_visionfive_e2_1230.bin.out)** path 
 
    
 
