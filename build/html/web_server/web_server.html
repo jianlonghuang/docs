@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>web server &mdash; jianlong_docs V1.00 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Start Tftpd32 server" href="../visionfive_v1_test/tftp_update_uboot.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> jianlong_docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html">Burn TF Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#fetch-code">Fetch code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#build-tf-card-booting-image">Build TF Card Booting Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#copy-test-script">Copy test_script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#running-on-board">Running on Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#run-product-test-on-board">Run Product_test on Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#enter-mac-and-sn">Enter MAC and SN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/tftp_update_uboot.html">Start Tftpd32 server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/tftp_update_uboot.html#update-fw-payload-visionfive-e2-1230-bin-out">Update fw_payload_visionfive_e2_1230.bin.out</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">web server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">jianlong_docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>web server</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/web_server/web_server.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="web-server">
+<h1>web server<a class="headerlink" href="#web-server" title="Permalink to this headline"></a></h1>
+<ol>
+<li><p><strong>板卡执行如下命令安装和启动httpd</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">httpd</span>
+<span class="n">systemctl</span> <span class="n">start</span> <span class="n">httpd</span>
+<span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">service</span><span class="o">=</span><span class="n">http</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>PC端用浏览器访问板卡IP</strong></p>
+<p>出现Fedora Webserver Test Page测试页面，说明搭建web server成功</p>
+</li>
+<li><p><strong>disable Test Page</strong></p>
+<p>To disable the test page, comment out all the lines in the file <code class="docutils literal notranslate"><span class="pre">/etc/httpd/conf.d/welcome.conf</span></code> using <code class="docutils literal notranslate"><span class="pre">#</span></code> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># &lt;LocationMatch &quot;^/+$&quot;&gt;</span>
+<span class="c1">#    Options -Indexes</span>
+<span class="c1">#    ErrorDocument 403 /.noindex.html</span>
+<span class="c1"># &lt;/LocationMatch&gt;</span>
+
+<span class="c1"># &lt;Directory /usr/share/httpd/noindex&gt;</span>
+<span class="c1">#    AllowOverride None</span>
+<span class="c1">#    Require all granted</span>
+<span class="c1"># &lt;/Directory&gt;</span>
+
+<span class="c1"># Alias /.noindex.html /usr/share/httpd/noindex/index.html</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>拷贝内容到/var/www/html/目录下，PC端用浏览器访问板卡IP，即可显示自己内容</strong></p></li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../visionfive_v1_test/tftp_update_uboot.html" class="btn btn-neutral float-left" title="Start Tftpd32 server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, jianlong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
