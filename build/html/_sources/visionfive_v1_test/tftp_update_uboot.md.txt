@@ -1,6 +1,8 @@
+# tftp_update_uboot
+
 ALL the steps take 1 minute
 
-# Start Tftpd32 server
+## Start Tftpd32 server
 
 PC IP: 192.168.120.33
 
@@ -10,7 +12,7 @@ PC IP: 192.168.120.33
 
    
 
-# Update fw_payload_visionfive_e2_1230.bin.out
+## Update fw_payload_visionfive_e2_1230.bin.out
 
 1. Turn on the power, Press 'v' if you see the infomation as follows:
 

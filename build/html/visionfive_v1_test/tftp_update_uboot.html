@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Start Tftpd32 server &mdash; jianlong_docs V1.00 documentation</title>
+  <title>tftp_update_uboot &mdash; jianlong_docs V1.00 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,7 +18,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Burn TF Card" href="visionfive_v1_product_test_guide.html" /> 
+    <link rel="next" title="web server fedora" href="../web_server/web_server.html" />
+    <link rel="prev" title="visionfive_v1_product_test_guide" href="visionfive_v1_product_test_guide.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,15 +38,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html">Burn TF Card</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#fetch-code">Fetch code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#build-tf-card-booting-image">Build TF Card Booting Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#copy-test-script">Copy test_script</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#running-on-board">Running on Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#run-product-test-on-board">Run Product_test on Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html#enter-mac-and-sn">Enter MAC and SN</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Start Tftpd32 server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#update-fw-payload-visionfive-e2-1230-bin-out">Update fw_payload_visionfive_e2_1230.bin.out</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visionfive_v1_product_test_guide.html">visionfive_v1_product_test_guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tftp_update_uboot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#start-tftpd32-server">Start Tftpd32 server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update-fw-payload-visionfive-e2-1230-bin-out">Update fw_payload_visionfive_e2_1230.bin.out</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../web_server/web_server.html">web server fedora</a></li>
 </ul>
 
         </div>
@@ -62,7 +61,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Start Tftpd32 server</li>
+      <li>tftp_update_uboot</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/visionfive_v1_test/tftp_update_uboot.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,9 +71,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>ALL the steps take 1 minute</p>
+  <section id="tftp-update-uboot">
+<h1>tftp_update_uboot<a class="headerlink" href="#tftp-update-uboot" title="Permalink to this headline"></a></h1>
+<p>ALL the steps take 1 minute</p>
 <section id="start-tftpd32-server">
-<h1>Start Tftpd32 server<a class="headerlink" href="#start-tftpd32-server" title="Permalink to this headline"></a></h1>
+<h2>Start Tftpd32 server<a class="headerlink" href="#start-tftpd32-server" title="Permalink to this headline"></a></h2>
 <p>PC IP: 192.168.120.33</p>
 <ol class="simple">
 <li><p>Open <strong><a class="reference external" href="https://github.com/jianlonghuang/docs/blob/master/source/visionfive_v1_test/tools/tftpd32.exe">Tftpd32.exe</a></strong></p></li>
@@ -82,7 +83,7 @@
 </ol>
 </section>
 <section id="update-fw-payload-visionfive-e2-1230-bin-out">
-<h1>Update fw_payload_visionfive_e2_1230.bin.out<a class="headerlink" href="#update-fw-payload-visionfive-e2-1230-bin-out" title="Permalink to this headline"></a></h1>
+<h2>Update fw_payload_visionfive_e2_1230.bin.out<a class="headerlink" href="#update-fw-payload-visionfive-e2-1230-bin-out" title="Permalink to this headline"></a></h2>
 <ol>
 <li><p>Turn on the power, Press ‘v’ if you see the infomation as follows:</p>
 <p><code class="docutils literal notranslate"><span class="pre">Autoboot</span> <span class="pre">in</span> <span class="pre">2</span> <span class="pre">seconds</span></code></p>
@@ -204,12 +205,14 @@ Autoboot in 2 seconds</p>
 </li>
 </ol>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="visionfive_v1_product_test_guide.html" class="btn btn-neutral float-left" title="Burn TF Card" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visionfive_v1_product_test_guide.html" class="btn btn-neutral float-left" title="visionfive_v1_product_test_guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../web_server/web_server.html" class="btn btn-neutral float-right" title="web server fedora" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

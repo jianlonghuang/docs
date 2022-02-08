@@ -1,6 +1,6 @@
-# web server
+# web server fedora
 
-1. **board install and start httpd**
+1. **板卡执行如下命令安装和启动httpd**
 
    ```
    dnf install httpd
@@ -10,11 +10,11 @@
 
    
 
-2. **PC use browser to visit**
+2. **PC端用浏览器访问板卡IP**
 
-   Input board IP, if you can read *Fedora Webserver Test Page*, it means that the web server installed at this site is working properly.
+   出现Fedora Webserver Test Page测试页面，说明搭建web server成功
 
-   ![testpage](https://github.com/jianlonghuang/docs/blob/master/source/web_server/pic/testpage.png)
+   ![testpage](pic/testpage.png)
 
 3. **disable Test Page**
 
@@ -34,11 +34,11 @@
    # Alias /.noindex.html /usr/share/httpd/noindex/index.html
    ```
 
-4. **copy your files to /var/www/html/**
+4. **拷贝网页到/var/www/html/目录下，PC端用浏览器访问板卡IP，即可显示自己添加的内容**
 
-   Input board IP, if you can read your files
+   ![testpage](pic/testhtml.png)
 
-​	![testhtml](https://github.com/jianlonghuang/docs/blob/master/source/web_server/pic/testhtml.png)
+
 
 
 

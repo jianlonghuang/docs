@@ -1,4 +1,6 @@
-# Burn TF Card
+# visionfive_v1_product_test_guide
+
+## Burn TF Card
 
 If you don't want to fetch code and compile, you can do this step,  skip **Fetch code** and **Build TF Card Booting Image** chapter
 
@@ -17,7 +19,7 @@ Note:
 
 
 
-# Fetch code
+## Fetch code
 
 [https://github.com/starfive-tech/freelight-u-sdk.git](https://github.com/starfive-tech/freelight-u-sdk.git)
 
@@ -57,7 +59,7 @@ $ cd opensbi && git checkout master && cd ..
 
 
 
-# Build TF Card Booting Image
+## Build TF Card Booting Image
 
 please modify the following file
 
@@ -82,7 +84,7 @@ CONFIG_CMDLINE="earlyprintk console=tty1 console=ttyS0,115200 debug rootwait stm
 change
 CONFIG_FB_STARFIVE_VIDEO=y
 to
-#CONFIG_FB_STARFIVE_VIDEO=y
+##CONFIG_FB_STARFIVE_VIDEO=y
 
 add
 CONFIG_FRAMEBUFFER_CONSOLE=y
@@ -141,7 +143,7 @@ Note: please also do not forget to update the `fw_payload.bin.out` which is buil
 
 
 
-# Copy test_script
+## Copy test_script
 
 **Step1**: fetch test_script
 
@@ -165,7 +167,7 @@ Note: /media/jianlong/465a8d4f-31fe-40c3-951e-4a565bd3a620/ is mounted path of /
 
 
 
-# Running on Board
+## Running on Board
 
 *more details refer to [README](https://github.com/starfive-tech/freelight-u-sdk/tree/JH7100_starlight_multimedia)*
 
@@ -225,7 +227,7 @@ buildroot login:root
 Password: starfive
 ```
 
-# Run Product_test on Board
+## Run Product_test on Board
 
 **Step1**:
 
@@ -327,7 +329,7 @@ WLAN0 RX:         FAIL  rx speed:  1.82 Mbits/sec
 
 
 
-# Enter MAC and SN
+## Enter MAC and SN
 
 **Step1**: excute the command to enter Mac and SN
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>web server &mdash; jianlong_docs V1.00 documentation</title>
+  <title>web server fedora &mdash; jianlong_docs V1.00 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Start Tftpd32 server" href="../visionfive_v1_test/tftp_update_uboot.html" /> 
+    <link rel="prev" title="tftp_update_uboot" href="../visionfive_v1_test/tftp_update_uboot.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,16 +37,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html">Burn TF Card</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#fetch-code">Fetch code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#build-tf-card-booting-image">Build TF Card Booting Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#copy-test-script">Copy test_script</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#running-on-board">Running on Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#run-product-test-on-board">Run Product_test on Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html#enter-mac-and-sn">Enter MAC and SN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/tftp_update_uboot.html">Start Tftpd32 server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/tftp_update_uboot.html#update-fw-payload-visionfive-e2-1230-bin-out">Update fw_payload_visionfive_e2_1230.bin.out</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">web server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/visionfive_v1_product_test_guide.html">visionfive_v1_product_test_guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visionfive_v1_test/tftp_update_uboot.html">tftp_update_uboot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">web server fedora</a></li>
 </ul>
 
         </div>
@@ -63,7 +56,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>web server</li>
+      <li>web server fedora</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/web_server/web_server.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -73,19 +66,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="web-server">
-<h1>web server<a class="headerlink" href="#web-server" title="Permalink to this headline"></a></h1>
+  <section id="web-server-fedora">
+<h1>web server fedora<a class="headerlink" href="#web-server-fedora" title="Permalink to this headline"></a></h1>
 <ol>
-<li><p><strong>board install and start httpd</strong></p>
+<li><p><strong>板卡执行如下命令安装和启动httpd</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">httpd</span>
 <span class="n">systemctl</span> <span class="n">start</span> <span class="n">httpd</span>
 <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">service</span><span class="o">=</span><span class="n">http</span>
 </pre></div>
 </div>
 </li>
-<li><p><strong>PC use browser to visit</strong></p>
-<p>Input board IP, if you can read <em>Fedora Webserver Test Page</em>, it means that the web server installed at this site is working properly.</p>
-<p><img alt="testpage" src="https://github.com/jianlonghuang/docs/blob/master/source/web_server/pic/testpage.png" /></p>
+<li><p><strong>PC端用浏览器访问板卡IP</strong></p>
+<p>出现Fedora Webserver Test Page测试页面，说明搭建web server成功</p>
+<p><img alt="testpage" src="../_images/testpage.png" /></p>
 </li>
 <li><p><strong>disable Test Page</strong></p>
 <p>To disable the test page, comment out all the lines in the file <code class="docutils literal notranslate"><span class="pre">/etc/httpd/conf.d/welcome.conf</span></code> using <code class="docutils literal notranslate"><span class="pre">#</span></code> as follows:</p>
@@ -103,18 +96,17 @@
 </pre></div>
 </div>
 </li>
-<li><p><strong>copy your files to /var/www/html/</strong></p>
-<p>Input board IP, if you can read your files</p>
+<li><p><strong>拷贝网页到/var/www/html/目录下，PC端用浏览器访问板卡IP，即可显示自己添加的内容</strong></p>
+<p><img alt="testpage" src="../_images/testhtml.png" /></p>
 </li>
 </ol>
-<p>​	<img alt="testhtml" src="https://github.com/jianlonghuang/docs/blob/master/source/web_server/pic/testhtml.png" /></p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../visionfive_v1_test/tftp_update_uboot.html" class="btn btn-neutral float-left" title="Start Tftpd32 server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../visionfive_v1_test/tftp_update_uboot.html" class="btn btn-neutral float-left" title="tftp_update_uboot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

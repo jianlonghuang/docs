@@ -7,11 +7,12 @@ Welcome to jianlong_docs's documentation!
 =========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    
    visionfive_v1_test/visionfive_v1_product_test_guide
    visionfive_v1_test/tftp_update_uboot
    web_server/web_server
+
 Indices and tables
 ==================
 

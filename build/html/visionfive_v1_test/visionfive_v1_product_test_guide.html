@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Burn TF Card &mdash; jianlong_docs V1.00 documentation</title>
+  <title>visionfive_v1_product_test_guide &mdash; jianlong_docs V1.00 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Start Tftpd32 server" href="tftp_update_uboot.html" />
+    <link rel="next" title="tftp_update_uboot" href="tftp_update_uboot.html" />
     <link rel="prev" title="Welcome to jianlong_docs’s documentation!" href="../index.html" /> 
 </head>
 
@@ -38,15 +38,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Burn TF Card</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#fetch-code">Fetch code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#build-tf-card-booting-image">Build TF Card Booting Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#copy-test-script">Copy test_script</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#running-on-board">Running on Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#run-product-test-on-board">Run Product_test on Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#enter-mac-and-sn">Enter MAC and SN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tftp_update_uboot.html">Start Tftpd32 server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tftp_update_uboot.html#update-fw-payload-visionfive-e2-1230-bin-out">Update fw_payload_visionfive_e2_1230.bin.out</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">visionfive_v1_product_test_guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#burn-tf-card">Burn TF Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fetch-code">Fetch code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-tf-card-booting-image">Build TF Card Booting Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy-test-script">Copy test_script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-on-board">Running on Board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-product-test-on-board">Run Product_test on Board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enter-mac-and-sn">Enter MAC and SN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tftp_update_uboot.html">tftp_update_uboot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../web_server/web_server.html">web server fedora</a></li>
 </ul>
 
         </div>
@@ -63,7 +66,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Burn TF Card</li>
+      <li>visionfive_v1_product_test_guide</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/visionfive_v1_test/visionfive_v1_product_test_guide.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -73,8 +76,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="burn-tf-card">
-<h1>Burn TF Card<a class="headerlink" href="#burn-tf-card" title="Permalink to this headline"></a></h1>
+  <section id="visionfive-v1-product-test-guide">
+<h1>visionfive_v1_product_test_guide<a class="headerlink" href="#visionfive-v1-product-test-guide" title="Permalink to this headline"></a></h1>
+<section id="burn-tf-card">
+<h2>Burn TF Card<a class="headerlink" href="#burn-tf-card" title="Permalink to this headline"></a></h2>
 <p>If you don’t want to fetch code and compile, you can do this step,  skip <strong>Fetch code</strong> and <strong>Build TF Card Booting Image</strong> chapter</p>
 <p>downloag the lastest releases image <a class="reference external" href="https://github.com/jianlonghuang/script_burn_tf">script_burn_tf_visionfive.tar.gz</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">script_burn_tf_visionfive</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
@@ -89,7 +94,7 @@
 </ol>
 </section>
 <section id="fetch-code">
-<h1>Fetch code<a class="headerlink" href="#fetch-code" title="Permalink to this headline"></a></h1>
+<h2>Fetch code<a class="headerlink" href="#fetch-code" title="Permalink to this headline"></a></h2>
 <p><a class="reference external" href="https://github.com/starfive-tech/freelight-u-sdk.git">https://github.com/starfive-tech/freelight-u-sdk.git</a></p>
 <blockquote>
 <div><p>branch:</p>
@@ -115,7 +120,7 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 </div>
 </section>
 <section id="build-tf-card-booting-image">
-<h1>Build TF Card Booting Image<a class="headerlink" href="#build-tf-card-booting-image" title="Permalink to this headline"></a></h1>
+<h2>Build TF Card Booting Image<a class="headerlink" href="#build-tf-card-booting-image" title="Permalink to this headline"></a></h2>
 <p>please modify the following file</p>
 <p>freelight-u-sdk/Makefile</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">change</span>
@@ -134,7 +139,7 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 <span class="n">change</span>
 <span class="n">CONFIG_FB_STARFIVE_VIDEO</span><span class="o">=</span><span class="n">y</span>
 <span class="n">to</span>
-<span class="c1">#CONFIG_FB_STARFIVE_VIDEO=y</span>
+<span class="c1">##CONFIG_FB_STARFIVE_VIDEO=y</span>
 
 <span class="n">add</span>
 <span class="n">CONFIG_FRAMEBUFFER_CONSOLE</span><span class="o">=</span><span class="n">y</span>
@@ -180,7 +185,7 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 <p>Note: please also do not forget to update the <code class="docutils literal notranslate"><span class="pre">fw_payload.bin.out</span></code> which is built by this step.</p>
 </section>
 <section id="copy-test-script">
-<h1>Copy test_script<a class="headerlink" href="#copy-test-script" title="Permalink to this headline"></a></h1>
+<h2>Copy test_script<a class="headerlink" href="#copy-test-script" title="Permalink to this headline"></a></h2>
 <p><strong>Step1</strong>: fetch test_script</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jianlonghuang</span><span class="o">/</span><span class="n">test_script</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
@@ -195,7 +200,7 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 <p>Note: /media/jianlong/465a8d4f-31fe-40c3-951e-4a565bd3a620/ is mounted path of /dev/sdX3</p>
 </section>
 <section id="running-on-board">
-<h1>Running on Board<a class="headerlink" href="#running-on-board" title="Permalink to this headline"></a></h1>
+<h2>Running on Board<a class="headerlink" href="#running-on-board" title="Permalink to this headline"></a></h2>
 <p><em>more details refer to <a class="reference external" href="https://github.com/starfive-tech/freelight-u-sdk/tree/JH7100_starlight_multimedia">README</a></em></p>
 <p>downloag the lastest releases uboot file <a class="reference external" href="https://github.com/jianlonghuang/script_burn_tf">fw_payload.bin.out</a></p>
 <p>After the Visionfive is properly connected to the serial port cable, network cable and power cord turn on the power from the wall power socket to power on the Visionfive and you will see the startup information as follows:</p>
@@ -239,7 +244,7 @@ $ cd opensbi &amp;&amp; git checkout master &amp;&amp; cd ..
 </div>
 </section>
 <section id="run-product-test-on-board">
-<h1>Run Product_test on Board<a class="headerlink" href="#run-product-test-on-board" title="Permalink to this headline"></a></h1>
+<h2>Run Product_test on Board<a class="headerlink" href="#run-product-test-on-board" title="Permalink to this headline"></a></h2>
 <p><strong>Step1</strong>:</p>
 <ol class="simple">
 <li><p>Before excute test_script, you must pulg HDMI displayer/USB disk/ethernet cable.</p></li>
@@ -326,7 +331,7 @@ PWMADC PASS
 </div>
 </section>
 <section id="enter-mac-and-sn">
-<h1>Enter MAC and SN<a class="headerlink" href="#enter-mac-and-sn" title="Permalink to this headline"></a></h1>
+<h2>Enter MAC and SN<a class="headerlink" href="#enter-mac-and-sn" title="Permalink to this headline"></a></h2>
 <p><strong>Step1</strong>: excute the command to enter Mac and SN</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">test_script</span> <span class="o">&amp;&amp;</span> <span class="n">sh</span> <span class="n">enter_mac_sn</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -354,13 +359,14 @@ PWMADC PASS
 </pre></div>
 </div>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to jianlong_docs’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tftp_update_uboot.html" class="btn btn-neutral float-right" title="Start Tftpd32 server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tftp_update_uboot.html" class="btn btn-neutral float-right" title="tftp_update_uboot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
