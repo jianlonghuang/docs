@@ -14,7 +14,7 @@
 
    出现Fedora Webserver Test Page测试页面，说明搭建web server成功
 
-   
+   ![testpage](https://github.com/jianlonghuang/docs/blob/master/source/web_server/pic/testpage.png)
 
 3. **disable Test Page**
 
@@ -34,9 +34,9 @@
    # Alias /.noindex.html /usr/share/httpd/noindex/index.html
    ```
 
-4. **拷贝内容到/var/www/html/目录下，PC端用浏览器访问板卡IP，即可显示自己内容**
+4. **拷贝网页到/var/www/html/目录下，PC端用浏览器访问板卡IP，即可显示自己内容**
 
-
+​	![testhtml](https://github.com/jianlonghuang/docs/blob/master/source/web_server/pic/testhtml.png)
 
 
 
