@@ -37,8 +37,7 @@ source_suffix = ['.rst', '.md']
 # ones.
 #extensions = ['recommonmark']
 extensions = [
-    'recommonmark',
-    'sphinx_markdown_tables'
+    'recommonmark'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
