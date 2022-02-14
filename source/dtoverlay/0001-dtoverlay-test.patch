@@ -1,0 +1,264 @@
+From 45821380daa476dcd1570d7e7e605954fc5439a0 Mon Sep 17 00:00:00 2001
+From: jianlonghuang <jianlong.huang@starfivetech.com>
+Date: Mon, 14 Feb 2022 16:37:36 +0800
+Subject: [PATCH] dtoverlay test
+
+Signed-off-by: jianlonghuang <jianlong.huang@starfivetech.com>
+---
+ .../boot/dts/starfive/jh7100-common.dtsi      | 160 ------------------
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      |  33 ----
+ 2 files changed, 193 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+index eb3bbe110dc3..7008b83a5232 100644
+--- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+@@ -233,20 +233,6 @@
+ 		};
+ 	};
+ 
+-	i2c1_pins: i2c1-0 {
+-		i2c-pins {
+-			pinmux = <GPIOMUX(47, GPO_LOW,
+-				  GPO_I2C1_PAD_SCK_OEN,
+-				  GPI_I2C1_PAD_SCK_IN)>,
+-				 <GPIOMUX(48, GPO_LOW,
+-				  GPO_I2C1_PAD_SDA_OEN,
+-				  GPI_I2C1_PAD_SDA_IN)>;
+-			bias-pull-up;
+-			input-enable;
+-			input-schmitt-enable;
+-		};
+-	};
+-
+ 	i2c2_pins: i2c2-0 {
+ 		i2c-pins {
+ 			pinmux = <GPIOMUX(60, GPO_LOW,
+@@ -275,28 +261,6 @@
+ 		};
+ 	};
+ 
+-	pwm_pins: pwm-0 {
+-		pwm-pins {
+-			pinmux = <GPIOMUX(7,
+-				  GPO_PWM_PAD_OUT_BIT0,
+-				  GPO_PWM_PAD_OE_N_BIT0,
+-				  GPI_NONE)>,
+-				 <GPIOMUX(5,
+-				  GPO_PWM_PAD_OUT_BIT1,
+-				  GPO_PWM_PAD_OE_N_BIT1,
+-				  GPI_NONE)>;
+-				// <GPIOMUX(45,
+-				//  GPO_PWM_PAD_OUT_BIT2,
+-				//  GPO_PWM_PAD_OE_N_BIT2,
+-				//  GPI_NONE)>;
+-			bias-disable;
+-			drive-strength = <35>;
+-			input-disable;
+-			input-schmitt-disable;
+-			slew-rate = <0>;
+-		};
+-	};
+-
+ 	sdio0_pins: sdio0-0 {
+ 		clk-pins {
+ 			pinmux = <GPIOMUX(54, GPO_SDIO0_PAD_CCLK_OUT,
+@@ -369,39 +333,6 @@
+ 		};
+ 	};
+ 
+-	spi2_pins: spi2-0 {
+-		mosi-pins {
+-			pinmux = <GPIOMUX(18, GPO_SPI2_PAD_TXD,
+-				  GPO_ENABLE, GPI_NONE)>;
+-			bias-disable;
+-			input-disable;
+-			input-schmitt-disable;
+-		};
+-		miso-pins {
+-			pinmux = <GPIOMUX(16, GPO_LOW, GPO_DISABLE,
+-				  GPI_SPI2_PAD_RXD)>;
+-			bias-pull-up;
+-			input-enable;
+-			input-schmitt-enable;
+-		};
+-		sck-pins {
+-			pinmux = <GPIOMUX(12, GPO_SPI2_PAD_SCK_OUT,
+-				  GPO_ENABLE, GPI_NONE)>;
+-			bias-disable;
+-			input-disable;
+-			input-schmitt-disable;
+-		};
+-		ss-pins {
+-			pinmux = <GPIOMUX(15, GPO_SPI2_PAD_SS_0_N,
+-				  GPO_ENABLE, GPI_NONE)>,
+-				 <GPIOMUX(11, GPO_SPI2_PAD_SS_1_N,
+-				  GPO_ENABLE, GPI_NONE)>;
+-			bias-disable;
+-			input-disable;
+-			input-schmitt-disable;
+-		};
+-	};
+-
+ 	uart0_pins: uart0-0 {
+ 		rx-pins {
+ 			pinmux = <GPIOMUX(40, GPO_LOW, GPO_DISABLE,
+@@ -501,79 +432,6 @@
+ 	};
+ };
+ 
+-&i2c1 {
+-	clock-frequency = <400000>;
+-	i2c-sda-hold-time-ns = <300>;
+-	i2c-sda-falling-time-ns = <100>;
+-	i2c-scl-falling-time-ns = <100>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&i2c1_pins>;
+-	status = "okay";
+-
+-#ifdef WM8960_ENABLED
+-	wm8960: codec@1a {
+-		compatible = "wlf,wm8960";
+-		reg = <0x1a>;
+-		#sound-dai-cells = <0>;
+-		wlf,shared-lrclk;
+-	};
+-#endif
+-
+-#ifdef AC108_ENABLED
+-	ac108_a: ac108@3b {
+-		compatible = "x-power,ac108_0";
+-		reg = <0x3b>;
+-		#sound-dai-cells = <0>;
+-		data-protocol = <0>;
+-	};
+-#endif
+-
+-	/* TODO: Used for EVB board, should comment here for starlight board, remove it later*/
+-	ov5640: ov5640@3c {
+-		compatible = "ovti,ov5640";
+-		reg = <0x3c>;
+-		clocks = <&clk_ext_camera>;
+-		clock-names = "xclk";
+-		powerdown-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
+-		reset-gpios = <&gpio 28 GPIO_ACTIVE_HIGH>;
+-		//DOVDD-supply = <&v2v8>;
+-		rotation = <180>;
+-		port {
+-			// Parallel bus endpoint
+-			ov5640_to_parallel: endpoint {
+-				remote-endpoint = <&parallel_from_ov5640>;
+-				bus-type = <5>;      // Parallel
+-				bus-width = <8>;
+-				data-shift = <2>; // lines 9:2 are used
+-				hsync-active = <0>;
+-				vsync-active = <1>;
+-				pclk-sample = <1>;
+-			};
+-		};
+-	};
+-	sc2235@30 {
+-		compatible = "sc2235";
+-		reg = <0x30>;
+-		clocks = <&clk_ext_camera>;
+-		clock-names = "xclk";
+-		powerdown-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
+-		reset-gpios = <&gpio 28 GPIO_ACTIVE_HIGH>;
+-		//DOVDD-supply = <&v2v8>;
+-		port {
+-			// Parallel bus endpoint
+-			sc2235_to_parallel: endpoint {
+-				remote-endpoint = <&parallel_from_sc2235>;
+-				bus-type = <5>;      // Parallel
+-				bus-width = <8>;
+-				data-shift = <2>; // lines 13:6 are used
+-				hsync-active = <1>;
+-				vsync-active = <1>;
+-				pclk-sample = <1>;
+-			};
+-		};
+-	};	
+-};
+-
+ &i2c2 {
+ 	clock-frequency = <100000>;
+ 	i2c-sda-hold-time-ns = <300>;
+@@ -626,12 +484,6 @@
+ 	clock-frequency = <27000000>;
+ };
+ 
+-&ptc {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pwm_pins>;
+-	status = "okay";
+-};
+-
+ &pwmdac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwmdac_pins>;
+@@ -930,18 +782,6 @@
+ 	};
+ };
+ 
+-&spi2 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&spi2_pins>;
+-	status = "okay";
+-
+-	spi_dev0: spi@0 {
+-		compatible = "rohm,dh2228fv";
+-		spi-max-frequency = <10000000>;
+-		reg = <0>;
+-	};
+-};
+-
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_pins>;
+diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+index 08c22b2445ec..60a79c97f75e 100755
+--- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+@@ -542,39 +542,6 @@
+ 				//	};
+ 				//};
+ 
+-				/* TODO: Used for EVB board, comment here for starlight board, remove it later*/
+-				port@2 {
+-					reg = <2>; // dvp sensor
+-
+-					// Parallel bus endpoint
+-					parallel_from_ov5640: endpoint {
+-						remote-endpoint = <&ov5640_to_parallel>;
+-						bus-type = <5>;      // Parallel
+-						bus-width = <8>;
+-						data-shift = <2>; // lines 9:2 are used
+-						hsync-active = <1>;
+-						vsync-active = <0>;
+-						pclk-sample = <1>;
+-						status = "failed";
+-					};
+-				};
+-
+-				port@3 {
+-					reg = <2>; //dvp sensor
+-
+-					// Parallel bus endpoint
+-					parallel_from_sc2235: endpoint {
+-						remote-endpoint = <&sc2235_to_parallel>;
+-						bus-type = <5>;      // Parallel
+-						bus-width = <8>;
+-						data-shift = <2>; // lines 9:2 are used
+-						hsync-active = <1>;
+-						vsync-active = <1>;
+-						pclk-sample = <1>;
+-						status = "failed";
+-					};
+-				};
+-
+ 				port@4 {
+ 					reg = <3>; //csi2rx0 sensor
+ 
+-- 
+2.17.1
+

@@ -1,0 +1,115 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/pinctrl/pinctrl-starfive.h>
+/ {
+	fragment@0 {
+		target-path = "/soc/pinctrl@11910000";
+		__overlay__ {
+			i2c1_pins: i2c1-0 {
+				i2c-pins {
+					pinmux = <GPIOMUX(22, GPO_LOW,GPO_I2C1_PAD_SCK_OEN,GPI_I2C1_PAD_SCK_IN)>,
+							 <GPIOMUX(44, GPO_LOW,GPO_I2C1_PAD_SDA_OEN,GPI_I2C1_PAD_SDA_IN)>;
+					bias-pull-up;
+					input-enable;
+					input-schmitt-enable;
+				};
+       		};
+		};
+	};
+
+	fragment@1 {
+		target-path = "/soc/i2c@118c0000";
+		__overlay__ {
+			clock-frequency = <400000>;
+			i2c-sda-hold-time-ns = <300>;
+			i2c-sda-falling-time-ns = <100>;
+			i2c-scl-falling-time-ns = <100>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&i2c1_pins>;
+			status = "okay";
+		};
+    };
+
+	fragment@2 {
+		target-path = "/soc/pinctrl@11910000";
+		__overlay__ {
+			spi2_pins: spi2-0 {
+				mosi-pins {
+					pinmux = <GPIOMUX(9, GPO_SPI2_PAD_TXD,GPO_ENABLE, GPI_NONE)>;
+					bias-disable;
+					input-disable;
+					input-schmitt-disable;
+				};
+				miso-pins {
+					pinmux = <GPIOMUX(8, GPO_LOW, GPO_DISABLE,GPI_SPI2_PAD_RXD)>;
+					bias-pull-up;
+					input-enable;
+					input-schmitt-enable;
+				};
+				sck-pins {
+					pinmux = <GPIOMUX(12, GPO_SPI2_PAD_SCK_OUT,GPO_ENABLE, GPI_NONE)>;
+					bias-disable;
+					input-disable;
+					input-schmitt-disable;
+				};
+				ss-pins {
+					pinmux = <GPIOMUX(15, GPO_SPI2_PAD_SS_0_N,GPO_ENABLE, GPI_NONE)>,
+							 <GPIOMUX(11, GPO_SPI2_PAD_SS_1_N,GPO_ENABLE, GPI_NONE)>;
+					bias-disable;
+					input-disable;
+					input-schmitt-disable;
+				};
+			};
+		};
+	};
+
+	fragment@3 {
+		target-path = "/soc/spi@12410000";
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&spi2_pins>;
+			status = "okay";
+
+			spi_dev0: spi@0 {
+				compatible = "rohm,dh2228fv";
+				spi-max-frequency = <10000000>;
+				reg = <0>;
+			};
+		};
+	};
+
+	fragment@4 {
+		target-path = "/soc/pinctrl@11910000";
+		__overlay__ {
+			pwm_pins: pwm-0 {
+				pwm-pins {
+					pinmux = <GPIOMUX(0,GPO_PWM_PAD_OUT_BIT0,GPO_PWM_PAD_OE_N_BIT0,GPI_NONE)>,
+							 <GPIOMUX(1,GPO_PWM_PAD_OUT_BIT1,GPO_PWM_PAD_OE_N_BIT1,GPI_NONE)>,
+							 <GPIOMUX(2,GPO_PWM_PAD_OUT_BIT2,GPO_PWM_PAD_OE_N_BIT2,GPI_NONE)>,
+							 <GPIOMUX(3,GPO_PWM_PAD_OUT_BIT3,GPO_PWM_PAD_OE_N_BIT3,GPI_NONE)>,
+							 <GPIOMUX(4,GPO_PWM_PAD_OUT_BIT4,GPO_PWM_PAD_OE_N_BIT4,GPI_NONE)>,
+							 <GPIOMUX(5,GPO_PWM_PAD_OUT_BIT5,GPO_PWM_PAD_OE_N_BIT5,GPI_NONE)>,
+							 <GPIOMUX(6,GPO_PWM_PAD_OUT_BIT6,GPO_PWM_PAD_OE_N_BIT6,GPI_NONE)>,
+							 <GPIOMUX(7,GPO_PWM_PAD_OUT_BIT7,GPO_PWM_PAD_OE_N_BIT7,GPI_NONE)>;
+					bias-disable;
+					drive-strength = <35>;
+					input-disable;
+					input-schmitt-disable;
+					slew-rate = <0>;
+				};
+			};
+		};
+	};
+
+	fragment@5 {
+		target-path = "/soc/pwm@12490000";
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&pwm_pins>;
+			status = "okay";
+		};
+	};
+
+};
+
+ 

@@ -1,0 +1,26 @@
+From 4f1a5fc46adefcfcb276c27ea10a61d024760830 Mon Sep 17 00:00:00 2001
+From: jianlonghuang <jianlong.huang@starfivetech.com>
+Date: Mon, 14 Feb 2022 13:21:02 +0800
+Subject: [PATCH] add overlay config
+
+Signed-off-by: jianlonghuang <jianlong.huang@starfivetech.com>
+---
+ conf/visionfive_defconfig | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/conf/visionfive_defconfig b/conf/visionfive_defconfig
+index 4bc0d3c..8630dc4 100644
+--- a/conf/visionfive_defconfig
++++ b/conf/visionfive_defconfig
+@@ -226,3 +226,8 @@ CONFIG_RCU_CPU_STALL_TIMEOUT=60
+ # CONFIG_RCU_TRACE is not set
+ # CONFIG_FTRACE is not set
+ # CONFIG_RUNTIME_TESTING_MENU is not set
++CONFIG_OF_CONFIGFS=y
++CONFIG_OVERLAY_FS=y
++CONFIG_OVERLAY_FS_INDEX=y
++CONFIG_OVERLAY_FS_XINO_AUTO=y
++CONFIG_OVERLAY_FS_METACOPY=y
+-- 
+2.17.1
+
