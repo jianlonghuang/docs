@@ -24,11 +24,11 @@ git am 0001-dtoverlay-test.patch
 
 > Note: 
 >
-> 0001-add-overlay-config.patch
+> [0001-add-overlay-config.patch](https://github.com/jianlonghuang/docs/blob/master/source/dtoverlay/0001-add-overlay-config.patch)
 >
-> 0001-add-configfs-driver.patch
+> [0001-add-configfs-driver.patch](https://github.com/jianlonghuang/docs/blob/master/source/dtoverlay/0001-add-configfs-driver.patch)
 >
-> 0001-dtoverlay-test.patch
+> [0001-dtoverlay-test.patch](https://github.com/jianlonghuang/docs/blob/master/source/dtoverlay/0001-dtoverlay-test.patch)
 
 
 
@@ -38,7 +38,7 @@ git am 0001-dtoverlay-test.patch
 
    > for example:
    >
-   > dtoverlay.dts
+   > [dtoverlay.dts](https://github.com/jianlonghuang/docs/blob/master/source/dtoverlay/dtoverlay.dts)
 
 2. **compile dts**
 
