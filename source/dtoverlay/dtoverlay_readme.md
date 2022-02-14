@@ -104,15 +104,23 @@ git am 0001-dtoverlay-test.patch
    OF: overlay: WARNING: memory leak will occur if overlay removed, property: /soc/pwm@12490000/pinctrl-names
    OF: overlay: WARNING: memory leak will occur if overlay removed, property: /soc/pwm@12490000/pinctrl-0
    OF: overlay: WARNING: memory leak will occur if overlay removed, property: /soc/pwm@12490000/status
+   OF: overlay: WARNING: memory leak will occur if overlay removed, property: /soc/serial@11880000/pinctrl-names
+   OF: overlay: WARNING: memory leak will occur if overlay removed, property: /soc/serial@11880000/pinctrl-0
+   OF: overlay: WARNING: memory leak will occur if overlay removed, property: /soc/serial@11880000/status
    i2c_designware 118c0000.i2c: coherent device 0 dev->dma_coherent 0
    dw_spi_mmio 12410000.spi: coherent device 0 dev->dma_coherent 0
    dw_spi_mmio 12410000.spi: DMA init failed
    pwm-sifive-ptc 12490000.pwm: coherent device 0 dev->dma_coherent 0
+   dw-apb-uart 11880000.serial: coherent device 0 dev->dma_coherent 0
+   dw-apb-uart 11880000.serial: detected caps 00000000 should be 00000100
+   11880000.serial: ttyS2 at MMIO 0x11880000 (irq = 41, base_baud = 4640625) is a 16550
    ```
 
 
 
 ## Test
+
+more details about 40pins test refer to [wiki](https://wiki.rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide)
 
 - **PWM**
 
@@ -178,3 +186,42 @@ git am 0001-dtoverlay-test.patch
   60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- -- 
   70: 70 -- -- -- -- -- -- --         
   ```
+
+- **uart1**
+
+  1. connect USBtoTTL convert to uart pins and PC
+
+  2. excute the command on board to init uart1, then `ctrc+c` to stop the command
+
+     ```
+     brcm_patchram_plus --enable_hci --no2bytes --tosleep 200000 --baudrate 115200 /dev/ttyS2
+     ```
+
+  3. sent test
+
+     PC open a uart tool to monitor uart1 send
+
+     excute the command on board to send data
+
+     ```
+     echo abcde1232435 > /dev/ttyS2
+     ```
+
+  4. receive test
+
+     excute the command on board to monitor receive
+
+     ```
+     cat /dev/ttyS2
+     ```
+
+     PC open a uart tool to send data
+
+  
+
+  
+
+  
+
+
+

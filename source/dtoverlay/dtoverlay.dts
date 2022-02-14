@@ -110,6 +110,37 @@
 		};
 	};
 
+	fragment@6 {
+		target-path = "/soc/pinctrl@11910000";
+		__overlay__ {
+			uart1_pins: uart1-0 {
+				rx-pins {
+					pinmux = <GPIOMUX(21,GPO_LOW,GPO_DISABLE,GPI_UART1_PAD_SIN)>;
+					bias-pull-up;
+					drive-strength = <14>;
+					input-enable;
+					input-schmitt-enable;
+				};
+				tx-pins {
+					pinmux = <GPIOMUX(19,GPO_UART1_PAD_SOUT,GPO_ENABLE,GPI_NONE)>;
+					bias-disable;
+					drive-strength = <35>;
+					input-disable;
+					input-schmitt-disable;
+				};
+			};
+		};
+	};
+
+	fragment@7 {
+		target-path = "/soc/serial@11880000";
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&uart1_pins>;
+			status = "okay";
+		};
+	};
+	
 };
 
  
